@@ -11,6 +11,4 @@ router.get('/fishes', PageContoller.fishes);
 
 router.get('/search', SearchContoller.search);
 
-
-
 export default router;
