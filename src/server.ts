@@ -1,7 +1,8 @@
-import express from 'express';
+import express, {Response, Request} from 'express';
 import dotenv from 'dotenv';
 import mustache from 'mustache-express';
 import path from "path";
+import mainRouters from './routers/index'
 
 dotenv.config();
 
@@ -14,4 +15,9 @@ server.engine('mustache', mustache());
 server.use(express.static(path.join(__dirname, '../public')));
 
 //Rotas
+server.use(mainRouters);
+server.use((req: Request, res: Response) => {
+    res.status(404).send('Pagina não encontrada!');
+});
+
 server.listen(process.env.PORT);
